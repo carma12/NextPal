@@ -1,0 +1,32 @@
+.Friend {
+    padding: 22px;
+    background-color: #7184a4;
+    display: inherit;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 4px;
+    box-shadow: 7px 5px 15px 1px rgba(0,0,0,0.59);
+}
+
+.Friend p {
+    color: white;
+    padding-top: 13px;
+}
+
+.Button {
+    background-color: #eaeaea;
+    box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.45);
+    color: #445572;
+    border-color: #445572;
+    /*border-color: #2d3b51; #445572;*/
+}
+
+.ButtonDisabled {
+    background-color: #eaeaea;
+    box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.45);
+    color: #445572;
+    border-color: #445572;
+    opacity: 0.35;
+    cursor: no-drop;
+}
