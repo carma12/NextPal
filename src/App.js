@@ -11,33 +11,30 @@ function App() {
     const dispatch = useDispatch();
     const myFriends = useSelector(state => state.friends.myFriends);
 
-    // Get all users at when site loads the first time
-    useEffect(() => {
-        dispatch(fetchAllUsers());
-    }, [dispatch]);
-
-    // Update list of friends
-    useEffect(() => {
-        dispatch(getMyFriends());
-    }, [dispatch]);
-
-
+    // Update myFriends array from the ones in the DB
     useEffect(() => {
         // Preventing the list of Friends to be erased (in DB) when reload the page
         if (isInitial) {
             isInitial = false;
             return;
         }
-        // console.log('isInitial = ' + isInitial);
         dispatch(storeMyFriends(myFriends));
     }, [dispatch, myFriends]);
 
+    // Update list of friends
+    useEffect(() => {
+        dispatch(getMyFriends());
+    }, [dispatch]);
 
+    // Get all users at when site loads the first time
+    useEffect(() => {
+        dispatch(fetchAllUsers());
+    }, [dispatch]);
 
     return (
         <div>
             <Header/>
-            <Friends />
+            <Friends/>
         </div>
     );
 }

@@ -2,20 +2,34 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialFriendsState = {
     users: [],
-    myFriends: []
+    myFriends: [],
+    friendsFromDBReady: false
 };
 
 const friendsSlice = createSlice({
     name: 'friends',
     initialState: initialFriendsState,
     reducers: {
+        setMyFriendsList(state, action) {
+            state.myFriends = action.payload.myFriends;
+            state.friendsFromDBReady = true;
+        },
         setUsers(state, action) {
-            // TODO: here, try to set a variable 'isFriend' to disable button and prevent from adding them again
-            state.users = action.payload.users;
+            const usersRetrieved = action.payload.users;
+
+            for (const user of usersRetrieved) {
+                // Push users without isFriend variable (add this later)
+                state.users.push({
+                    id: user.id,
+                    first: user.first_name,
+                    last: user.last_name,
+                    email: user.email,
+                    avatar: user.avatar
+                });
+            }
         },
         addNewFriend(state, action) {
             const newFriend = action.payload;
-            // TODO: If friend can be added, it means is not in myFriends array (no duplications)
             const existingFriend = state.myFriends.find(friend => friend.id === newFriend.id);
 
             console.log(newFriend);
@@ -29,17 +43,7 @@ const friendsSlice = createSlice({
                     avatar: newFriend.avatar
                 });
             }
-        },
-        setMyFriendsList(state, action) {
-            state.myFriends = action.payload.myFriends;
-        },
-        // isUserMyFriend(state, action) {
-        //     const userId = action.payload.userId;
-        //     if (state.myFriends.map(friend => friend.id === userId)) {
-        //         return true;
-        //     }
-        //     return false;
-        // }
+        }
     }
 });
 
