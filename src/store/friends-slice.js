@@ -32,8 +32,6 @@ const friendsSlice = createSlice({
             const newFriend = action.payload;
             const existingFriend = state.myFriends.find(friend => friend.id === newFriend.id);
 
-            console.log(newFriend);
-
             if (!existingFriend) {
                 state.myFriends.push({
                     id: newFriend.id,
@@ -42,6 +40,14 @@ const friendsSlice = createSlice({
                     email: newFriend.email,
                     avatar: newFriend.avatar
                 });
+            }
+        },
+        deleteFriend(state, action) {
+            const friendId = action.payload.friendId;
+            const updatedArray = state.myFriends.filter(friend => friend.id !== friendId);
+
+            if (updatedArray) {
+                state.myFriends = updatedArray;
             }
         }
     }

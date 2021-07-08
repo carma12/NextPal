@@ -1,10 +1,14 @@
 import {friendsActions} from "./friends-slice";
 
+const REQUES_API_1 = 'https://reqres.in/api/users?page=1';
+const REQUES_API_2 = 'https://reqres.in/api/users?page=2';
+const FIREBASE_DB = 'https://nextpal-5e69e-default-rtdb.firebaseio.com/myFriends.json';
+
 // HTTP Request - Store my list of friends in my database
 export const storeMyFriends = (myFriendsList) => {
     return async dispatch => {
         const sendRequest = async () => {
-            const response = await fetch('https://nextpal-5e69e-default-rtdb.firebaseio.com/myFriends.json',
+            const response = await fetch(FIREBASE_DB,
                 {
                     method: 'PUT',
                     body: JSON.stringify(myFriendsList)
@@ -29,7 +33,7 @@ export const storeMyFriends = (myFriendsList) => {
 export const getMyFriends = () => {
     return async dispatch => {
         const fetchData = async () => {
-            const response = await fetch('https://nextpal-5e69e-default-rtdb.firebaseio.com/myFriends.json');
+            const response = await fetch(FIREBASE_DB);
             if (!response.ok) {
                 throw new Error('Could not fetch list of friends');
             }
@@ -52,8 +56,8 @@ export const getMyFriends = () => {
 export const fetchAllUsers = () => {
     return async dispatch => {
         const fetchData = async () => {
-            const response1 = await fetch('https://reqres.in/api/users?page=1');
-            const response2 = await fetch('https://reqres.in/api/users?page=2');
+            const response1 = await fetch(REQUES_API_1);
+            const response2 = await fetch(REQUES_API_2);
 
             if (!response1.ok || !response2.ok) {
                 throw new Error('Could not fetch list of users');

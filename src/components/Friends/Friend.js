@@ -6,18 +6,15 @@ import {friendsActions} from "../../store/friends-slice";
 
 const Friend = (props) => {
     const dispatch = useDispatch();
-    const [buttonDisabled, setButtonDisabled] = useState('');
     const [buttonTitle, setButtonTitle] = useState('Add Pal');
     const [emailShown, setEmailShown] = useState('');
 
     useEffect(() => {
         if (props.isFriend) {
-            console.log(props.first + ' ' + props.last + ' is friend!');
-            setButtonDisabled('disabled');
-            setButtonTitle('Is your Pal');
+            setButtonTitle('Delete Pal');
             setEmailShown(props.email);
         }
-    }, []);
+    }, [props.isFriend, props.email]);
 
     const addFriend = () => {
         dispatch(friendsActions.addNewFriend({
@@ -28,20 +25,28 @@ const Friend = (props) => {
             avatar: props.avatar,
             isFriend: props.isFriend
         }));
-        setButtonDisabled('disabled');
-        setButtonTitle('Is your Pal');
+        setButtonTitle('Delete Pal');
         setEmailShown(props.email);
     };
 
-    return (
-        <div className={classes.Friend}>
-            <img src={props.avatar} alt="A potential friend to add in your friend's list"/>
-            <p>{props.first} {props.last}</p>
-            <p><i>{emailShown}</i></p>
-            <Button className={classes.Button} variant="primary" onClick={addFriend}
-                    disabled={buttonDisabled}>{buttonTitle}</Button>
-        </div>
-    );
+    const removeFriend = () => {
+        dispatch(friendsActions.deleteFriend({
+            friendId: props.id
+        }));
+        setButtonTitle('Add Pal');
+        setEmailShown('');
+    };
+
+    return <div className={classes.Friend}>
+        <img src={props.avatar} alt="A potential friend to add in your friend's list"/>
+        <p>{props.first} {props.last}</p>
+        <p><i>{emailShown}</i></p>
+        <Button
+            className={!props.isFriend ? classes.Button : classes.ButtonRemove}
+            variant={!props.isFriend ? "primary" : "danger"}
+            onClick={!props.isFriend ? addFriend : removeFriend}
+        >{buttonTitle}</Button>
+    </div>;
 };
 
 export default Friend;

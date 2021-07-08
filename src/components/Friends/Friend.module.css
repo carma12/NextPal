@@ -18,15 +18,16 @@
     background-color: #eaeaea;
     box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.45);
     color: #445572;
-    border-color: #445572;
-    /*border-color: #2d3b51; #445572;*/
+    border-color: #445572 !important;
 }
 
-.ButtonDisabled {
-    background-color: #eaeaea;
+.ButtonRemove {
+    background-color: #b85757 !important;
     box-shadow: 4px 6px 12px 0 rgba(0, 0, 0, 0.45);
-    color: #445572;
-    border-color: #445572;
-    opacity: 0.35;
-    cursor: no-drop;
+    color: #f5f5f5;
+    border-color: #445572 !important;
+}
+
+.ButtonRemove:hover {
+    background-color: #b53636 !important;
 }
