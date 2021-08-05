@@ -12,6 +12,7 @@ A simple React Application that acts like a Social Network.
 
 <h3>Libraries used</h3>
 
+- <a href="https://react-redux.js.org/">React Router</a>
 - <a href="https://reactrouter.com/web/guides/quick-start">React Router</a>
 - <a href="https://react-bootstrap.github.io/">React Bootstrap</a>
 - <a href="https://react-hook-form.com/">React Hook Form</a>
