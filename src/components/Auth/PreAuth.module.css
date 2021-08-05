@@ -1,0 +1,17 @@
+.PreAuth {
+    margin: 1rem;
+    width: 100%;
+    padding: 34vh 0;
+    text-align: center;
+}
+
+.PreAuth h1 {
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+.LogInButton {
+    margin: 17px 14%;
+    padding: 10px 80px;
+    border-radius: 20px;
+}

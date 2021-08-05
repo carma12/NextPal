@@ -1,0 +1,67 @@
+.AuthForm {
+    margin: 3rem 29%;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+}
+
+.AuthForm h1 {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.MainForm {
+    padding: 0 3em;
+    text-align: center;
+}
+
+.Input {
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 12px;
+}
+
+.LogButton {
+    padding: 10px 50px;
+    border-radius: 25px !important;
+    margin: 1em 0;
+}
+
+.SwitchMode {
+    padding: 10px 50px;
+    border-radius: 25px !important;
+    margin: 1em 0;
+}
+
+.TestCredentials {
+    max-width: 300px;
+    padding: 20px;
+    margin: 10px auto;
+    background: #f3f9ff;
+    border: 1px solid #d4d4d4;
+    border-radius: 20px;
+    box-shadow: 2px 5px 3px 1px rgb(114, 114, 114);
+}
+
+.TestCredentials p:nth-child(1) {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.TestCredentials p:nth-child(2) {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+}
+
+.TestCredentials p:nth-child(3) {
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+.Error {
+    color: crimson;
+}
+

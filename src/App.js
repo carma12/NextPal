@@ -1,15 +1,20 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchAllUsers, getMyFriends, storeMyFriends} from "./store/friends-actions";
+import {Switch, Route, Redirect} from 'react-router-dom';
 
-import Header from "./components/Layout/Header";
-import Friends from "./components/Friends/Friends";
+import {fetchAllUsers, getMyFriends, storeMyFriends} from "./store/friends-actions";
+import authSlice from "./store/auth-slice";
+import Layout from "./components/Layout/Layout";
+import StartingPage from "./pages/StartingPage";
+import AuthForm from "./pages/AuthForm";
+import Friends from "./pages/Friends";
 
 let isInitial = true;
 
 function App() {
     const dispatch = useDispatch();
     const myFriends = useSelector(state => state.friends.myFriends);
+    const isLogin = useSelector(state => state.auth.isLogin);
 
     // Update myFriends array from the ones in the DB
     useEffect(() => {
@@ -31,11 +36,46 @@ function App() {
         dispatch(fetchAllUsers());
     }, [dispatch]);
 
+    // Allow persisting user authentication status (the user won't lose their session when reloading the page)
+    useEffect(() => {
+        dispatch(authSlice.actions.checkUserStatus());
+    }, [dispatch]);
+
+
+
     return (
-        <div>
-            <Header/>
-            <Friends/>
-        </div>
+        <Layout>
+            <Switch>
+                {!isLogin && (
+                    <Route path='/login'>
+                        <AuthForm/>
+                    </Route>
+                )}
+                {!isLogin && (
+                    <Route path='/' exact>
+                        <StartingPage/>
+                    </Route>
+                )}
+                {isLogin && (
+                    <Route path='/logout'>
+                        <Redirect to='/'/>
+                    </Route>
+                )}
+                {isLogin && (
+                    <Route path='/friends'>
+                        <Friends/>
+                    </Route>
+                )}
+                <Route path='*'>
+                    {isLogin && (
+                        <Redirect to='/friends'/>
+                    )}
+                    {!isLogin && (
+                        <Redirect to='/login'/> // before was '/'
+                    )}
+                </Route>
+            </Switch>
+        </Layout>
     );
 }
 

@@ -1,10 +1,13 @@
-import React from "react";
+import {Fragment} from "react";
+import {Spinner} from 'react-bootstrap';
 import {useSelector} from "react-redux";
 
 import classes from './Friends.module.css';
-import Friend from './Friend';
+import Friend from '../components/Friends/Friend';
+import Header from "../components/Layout/Header";
 
 const Friends = () => {
+        // TODO: Retrieve specific friends of that specific user. Store friends in DB.
         const allUsers = useSelector(state => state.friends.users);
         const myFriends = useSelector(state => state.friends.myFriends);
         const isMyFriendsListReady = useSelector(state => state.friends.friendsFromDBReady);
@@ -33,13 +36,20 @@ const Friends = () => {
                 ))}
             </div>
         );
-        const spinner = (!isMyFriendsListReady) && <div className="lds-hourglass"/>;
+        const spinner = (!isMyFriendsListReady) && <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+        />;
 
         return (
-            <React.Fragment>
+            <Fragment>
+                <Header/>
                 {spinner}
                 {usersList}
-            </React.Fragment>
+            </Fragment>
         );
     }
 ;

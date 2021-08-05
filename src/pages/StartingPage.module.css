@@ -1,0 +1,13 @@
+.StartingPage {
+    display: flex;
+    width: auto;
+    height: 100vh;
+}
+
+.ImageContainer {
+    height: 100vh;
+}
+
+.ImageContainer img {
+    height: 100%;
+}
